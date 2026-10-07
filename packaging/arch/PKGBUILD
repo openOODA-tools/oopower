@@ -1,0 +1,21 @@
+# Maintainer: openOODA-tools <ops@openooda.org>
+pkgname=oopower-bin
+_pkgname=oopower
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="Controls system power-profiles-daemon modes: performance, balanced, power-saver."
+arch=('x86_64')
+url="https://github.com/openOODA-tools/oopower"
+license=('Apache-2.0')
+depends=('glibc')
+provides=('oopower')
+conflicts=('oopower')
+source_x86_64=("${url}/releases/download/v${pkgver}/oopower-linux-x86_64"
+               "uninstall.sh::https://raw.githubusercontent.com/openOODA-tools/${_pkgname}/v${pkgver}/uninstall.sh")
+sha256sums_x86_64=('SKIP'
+                   'SKIP')
+
+package() {
+    install -Dm755 "${srcdir}/oopower-linux-x86_64" "${pkgdir}/usr/bin/oopower"
+    install -Dm755 uninstall.sh "${pkgdir}/usr/bin/oopower-uninstall"
+}
